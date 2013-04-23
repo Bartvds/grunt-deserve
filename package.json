@@ -1,0 +1,10 @@
+{
+	"name" : "grunt-deserve",
+	"description" : "minimal test project using grunt-deserve",
+	"engines": {
+		"node": ">= 0.10.0"
+	},
+	"dependencies": {},
+	"devDependencies": {
+		"grunt-deserve": "git+https://github.com/Bartvds/grunt-deserve#master"
+	}
