@@ -129,8 +129,7 @@ module.exports = function (grunt) {
 			});
 
 			if (this.flags.keepalive || options.keepalive) {
-
-				grunt.log.write('Waiting forever...\n');
+				grunt.log.writeln('Waiting forever...');
 			}
 			else {
 				done();
@@ -151,18 +150,21 @@ module.exports = function (grunt) {
 		var options = this.options({
 			hostname: 'localhost',
 			debug: true,
-			tinylrPort: tinylrPort
+			tinyport: tinylrPort
 		});
 		var done = this.async();
+		if (options.debug) {
+			grunt.log.writeln('Reloading on %s:%s.', options.hostname, options.tinyport);
+		}
 		request.get('http://' + options.hostname + ':' + options.tinyport + '/changed', function (error, response, body) {
 			if (error) {
-				grunt.log.write('error!' + error);
+				grunt.log.writeln('error! %s', error);
 			}
 			else {
-				grunt.log.write('reloaded ' + response.statusCode);
+				grunt.log.writeln('reloaded %s', response.statusCode);
 			}
 			if (options.debug && body) {
-				grunt.log.write(body);
+				grunt.log.writeln(body);
 			}
 			done();
 		});

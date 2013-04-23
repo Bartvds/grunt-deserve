@@ -70,7 +70,7 @@ exports.deserve = {
 	},
 	custom_options_reload: function (test) {
 		test.expect(4);
-
+		//weak test.. need real ip?
 		request.get('http://127.0.0.1:32198/changed', function (error, response, body) {
 			test.ok(!error, 'should not receive an error.');
 			test.ok(response, 'should receive an response.');
