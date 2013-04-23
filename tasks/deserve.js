@@ -115,7 +115,7 @@ module.exports = function (grunt) {
 			app.use(express.static(options.base));
 			//app.use(app.router);
 
-			grunt.log.writeln('Starting web server on %s:%s.', options.hostname, options.port);
+			grunt.log.writeln('Starting webserver on %s:%s.', options.hostname, options.port);
 			grunt.log.writeln('Serving files from %s', options.base);
 
 			app.listen(options.port, options.hostname);
@@ -142,7 +142,7 @@ module.exports = function (grunt) {
 		var that = this;
 		var tinylrServer = tinylr();
 		tinylrServer.listen(options.tinyport, function () {
-			grunt.log.writeln('Started tiny-lr listening on %d', options.tinyport);
+			grunt.log.writeln('Started tiny-lr on %s:%d.', options.hostname, options.tinyport);
 			setupApp.call(that);
 		});
 	});

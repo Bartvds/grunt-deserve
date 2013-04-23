@@ -81,5 +81,6 @@ module.exports = function (grunt) {
 
 	grunt.registerTask('edit_01', ['deserve:keepalive']);
 	grunt.registerTask('edit_02', ['deserve_reload:default']);
+	grunt.registerTask('edit_03', ['test']);
 
 };
