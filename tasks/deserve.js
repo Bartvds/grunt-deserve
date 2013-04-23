@@ -82,8 +82,9 @@ module.exports = function (grunt) {
 			port: 8000,
 			hostname: 'localhost',
 			base: '.',
-			debug: true,
-			tinylrPort: tinylrPort,
+			debug: false,
+			dev: true,
+			tinyport: tinylrPort,
 			keepalive: false
 		});
 
@@ -99,6 +100,9 @@ module.exports = function (grunt) {
 			//app.set('view engine', 'jade');
 			//app.set('views', __dirname + '/views');
 			if (grunt.option('debug') || options.debug) {
+				app.use(express.logger('debug'));
+			}
+			else if (options.dev) {
 				app.use(express.logger('dev'));
 			}
 			//TODO merge dev api's services
@@ -107,11 +111,11 @@ module.exports = function (grunt) {
 			 app.use(express.bodyParser());
 			 app.use(express.query());
 			 app.use(express.methodOverride());*/
-			app.use(getLiveReloadMiddleware(options.tinylrPort));
+			app.use(getLiveReloadMiddleware(options.tinyport));
 			app.use(express.static(options.base));
 			//app.use(app.router);
 
-			grunt.log.writeln('Starting connect web server on %s:%s.', options.hostname, options.port);
+			grunt.log.writeln('Starting web server on %s:%s.', options.hostname, options.port);
 			grunt.log.writeln('Serving files from %s', options.base);
 
 			app.listen(options.port, options.hostname);
@@ -137,8 +141,8 @@ module.exports = function (grunt) {
 
 		var that = this;
 		var tinylrServer = tinylr();
-		tinylrServer.listen(options.tinylrPort, function () {
-			grunt.log.writeln('tiny-lr listening on %d', options.tinylrPort);
+		tinylrServer.listen(options.tinyport, function () {
+			grunt.log.writeln('Started tiny-lr listening on %d', options.tinyport);
 			setupApp.call(that);
 		});
 	});
@@ -150,7 +154,7 @@ module.exports = function (grunt) {
 			tinylrPort: tinylrPort
 		});
 		var done = this.async();
-		request.get('http://' + options.hostname + ':' + options.tinylrPort + '/changed', function (error, response, body) {
+		request.get('http://' + options.hostname + ':' + options.tinyport + '/changed', function (error, response, body) {
 			if (error) {
 				grunt.log.write('error!' + error);
 			}

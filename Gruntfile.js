@@ -35,7 +35,7 @@ module.exports = function (grunt) {
 			custom: {
 				options: {
 					port: 8071,
-					tinylrPort: 32198,
+					tinyport: 32198,
 					hostname: '127.0.0.1',
 					base: 'test/fixtures/base_custom'
 				}
@@ -52,7 +52,7 @@ module.exports = function (grunt) {
 			},
 			custom: {
 				options: {
-					tinylrPort: 32198,
+					tinyport: 32198,
 					hostname: '127.0.0.1'
 				}
 			}
@@ -80,6 +80,6 @@ module.exports = function (grunt) {
 	grunt.registerTask('default', ['jshint', 'test']);
 
 	grunt.registerTask('edit_01', ['deserve:keepalive']);
-	grunt.registerTask('edit_02', ['deserve-reload:default']);
+	grunt.registerTask('edit_02', ['deserve_reload:default']);
 
 };
