@@ -8,3 +8,4 @@
 	"devDependencies": {
 		"grunt-deserve": "git+https://github.com/Bartvds/grunt-deserve#master"
 	}
+}
